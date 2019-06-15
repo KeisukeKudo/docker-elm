@@ -52,7 +52,7 @@ jobs:
           cache_key_prefix: v1
       - run:
           name: Run tests
-          command: docker run -it --rm elm bash -c "echo node `node -v` && elm"
+          command: docker run -it --rm elm bash -c "echo node `/usr/local/bin/node -v` && elm"
   update_version:
     working_directory: /app
     docker:

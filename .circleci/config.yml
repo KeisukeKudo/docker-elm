@@ -101,7 +101,7 @@ workflows:
     triggers:
       - schedule:
           # START UTC 21:00(JST 6:00)
-          cron: "45 15 * * *"
+          cron: "55 15 * * *"
           filters:
             branches:
               only: master

@@ -1,7 +1,7 @@
 # leoi7/elm
 Dockerfile with elm installed
 
-![]()
+[![CircleCI](https://circleci.com/gh/KeisukeKudo/docker-elm/tree/master.svg?style=svg)](https://circleci.com/gh/KeisukeKudo/docker-elm/tree/master)
 
 https://hub.docker.com/r/leoi7/elm  
 

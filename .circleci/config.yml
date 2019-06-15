@@ -60,7 +60,7 @@ jobs:
     steps:
       - run:
           name: Install package
-          command: apk --update --no-cache add bash git jq curl
+          command: apk --update --no-cache add bash git openssh-client jq curl
 
       - checkout
 
@@ -85,7 +85,7 @@ jobs:
             git add Dockerfile
             set +o pipefail
             git commit -m "update: circleci has updated elm version to ${VERSION}" | true
-            git tag -a 0.${VERSION} -m "Elm ${VERSION}" | true
+            git tag -a ${VERSION} -m "Elm ${VERSION}" | true
             set -o pipefail
             git push origin --tags
             git push origin
@@ -101,7 +101,7 @@ workflows:
     triggers:
       - schedule:
           # START UTC 21:00(JST 6:00)
-          cron: "7 16 * * *"
+          cron: "10 16 * * *"
           filters:
             branches:
               only: master

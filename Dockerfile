@@ -7,3 +7,4 @@ RUN apk --update --no-cache add bash \
   && tar -xzf binaries-for-linux.tar.gz \
   && rm binaries-for-linux.tar.gz \
   && mv elm /usr/local/bin/
+  

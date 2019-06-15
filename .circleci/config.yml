@@ -60,7 +60,7 @@ jobs:
     steps:
       - run:
           name: Install package
-          command: apk --update --no-cache add bash git openssh-client jq curl
+          command: apk --update --no-cache add bash git jq curl
 
       - checkout
 
@@ -87,8 +87,6 @@ jobs:
             git commit -m "update: circleci has updated elm version to ${VERSION}" | true
             git tag -a ${VERSION} -m "Elm ${VERSION}" | true
             set -o pipefail
-            mkdir -m 700 -p ~/.ssh/
-            echo "StrictHostKeyChecking no" >> ~/.ssh/config
             git push origin --tags
             git push origin
 
@@ -103,7 +101,7 @@ workflows:
     triggers:
       - schedule:
           # START UTC 21:00(JST 6:00)
-          cron: "0 21 * * *"
+          cron: "7 16 * * *"
           filters:
             branches:
               only: master

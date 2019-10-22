@@ -1,6 +1,6 @@
 FROM node:lts-alpine
 
-ENV ELM_VERSION 0.19.0
+ENV ELM_VERSION 0.19.1
 
 RUN apk --update --no-cache add bash \
   && node -v \

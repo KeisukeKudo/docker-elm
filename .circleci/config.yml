@@ -71,7 +71,7 @@ jobs:
             git config user.name "CircleCI"
             git config user.email ${EMAIL}
       - run:
-          name: Elm version up
+          name: Elm version upgrade check
           command: |
             VERSION=`curl -s https://api.github.com/repos/elm/compiler/tags | jq --raw-output .[0].name`
             echo "Elm version => ${VERSION}"
@@ -80,13 +80,24 @@ jobs:
               echo "${VERSION} is not released yet"
               exit 0
             fi
-            # Edit Dockerfile
+      - run:
+          name: Edit Dockerfile
+          command: |
             sed -ie "s/ENV ELM_VERSION .*$/ENV ELM_VERSION ${VERSION}/g" Dockerfile
+      - run:
+          name: git add
+          command: |
             git add Dockerfile
+      - run:
+          name: git commit
+          command: |
             set +o pipefail
             git commit -m "update: circleci has updated elm version to ${VERSION}" | true
             git tag -a ${VERSION} -m "Elm ${VERSION}" | true
             set -o pipefail
+      - run:
+          name: git push
+          command: |
             git push origin --tags
             git push origin
 

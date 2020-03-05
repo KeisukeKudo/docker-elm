@@ -75,7 +75,7 @@ jobs:
           command: |
             VERSION=`curl -s https://api.github.com/repos/elm/compiler/tags | jq --raw-output .[0].name`
             echo "Elm version => ${VERSION}"
-            count=`curl -sI https://github.com/elm/compiler/releases/download/${VERSION}/binary-for-linux-64-bit.gz | grep "HTTP/1.1 302" | wc -l`
+            count=`curl -sI https://github.com/elm/compiler/releases/download/${VERSION}/binary-for-linux-64-bit.gz | grep -i 'status: 302' | wc -l`
             if [ ${count} == "0" ]; then
               echo "${VERSION} is not released yet"
               exit 0

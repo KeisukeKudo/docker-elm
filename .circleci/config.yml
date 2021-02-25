@@ -83,10 +83,11 @@ jobs:
             # Edit Dockerfile
             sed -ie "s/ENV ELM_VERSION .*$/ENV ELM_VERSION ${VERSION}/g" Dockerfile
             git add Dockerfile
-            set +o pipefail
-            git commit -m "update: circleci has updated elm version to ${VERSION}" | true
-            git tag -a ${VERSION} -m "Elm ${VERSION}" | true
-            set -o pipefail
+            set +e
+            git commit -m "update: circleci has updated elm version to ${VERSION}"
+            git tag -a ${VERSION} -m "Elm ${VERSION}"
+            echo "Exit code: $?"
+            set -e
             git push origin --tags
             git push origin
 

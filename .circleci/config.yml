@@ -73,7 +73,7 @@ jobs:
       - run:
           name: Elm version up
           command: |
-            VERSION=`curl -s https://api.github.com/repos/elm/compiler/tags | jq --raw-output .[0].name`
+            VERSION=`curl -s https://api.github.com/repos/elm/compiler/tags | jq --raw-output '. | .[0].name'`
             echo "Elm version => ${VERSION}"
             count=`curl https://github.com/elm/compiler/releases/download/${VERSION}/binary-for-linux-64-bit.gz -o /dev/null -w '%{http_code}\n' -s | grep -i '302' | wc -l`
             if [ ${count} == "0" ]; then
